@@ -1,5 +1,8 @@
 ---
 name: "Master Workflow"
+env:
+  DOCKER_USER: emranbm
+  IMAGE_NAME: emranbm/jsmtproxy:latest
 on:
   push:
     branches:
@@ -9,4 +12,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: echo "TODO:\ build docker image"
+      - name: Login to Docker Hub
+        run: echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u $DOCKER_USER --password-stdin
+      - name: Build Image
+        run: docker build -t $IMAGE_NAME .
+      - name: Push Image
+        run: docker push $IMAGE_NAME
