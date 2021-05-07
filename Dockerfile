@@ -6,4 +6,4 @@ RUN make
 WORKDIR /mtproxy/objs/bin
 COPY run.sh .
 RUN chmod +x run.sh
-CMD run.sh
+CMD ./run.sh

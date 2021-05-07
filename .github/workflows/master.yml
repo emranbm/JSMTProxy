@@ -2,7 +2,7 @@
 name: "Master Workflow"
 env:
   DOCKER_USER: emranbm
-  IMAGE_NAME: emranbm/jsmtproxy:latest
+  IMAGE_NAME: emranbm/mtproxy:latest
   CONTAINER_NAME: mtproxy-container
 on:
   push:
