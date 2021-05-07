@@ -33,6 +33,7 @@ jobs:
         run: sshpass -p ${{ secrets.HOST_PASS }} ssh -o StrictHostKeyChecking=no ${{ secrets.HOST_USER }}@${{ secrets.HOST_ADDRESS }}
           docker run -d --rm
           -p 6969:6969
+          -p 8888:8888
           --env SECRET="${{ secrets.MTPROXY_SECRET }}"
           --name $CONTAINER_NAME
           $IMAGE_NAME

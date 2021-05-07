@@ -1,4 +1,9 @@
-FROM node:16.0.0-alpine3.13
-WORKDIR /app/
-COPY . .
-CMD echo "{\"port\":6969,\"secret\":\"$SECRET\"}" > config.json && node mtproxy.js
+FROM ubuntu:20.04
+RUN apt-get update && apt-get install -y git curl build-essential libssl-dev zlib1g-dev
+RUN git clone https://github.com/TelegramMessenger/MTProxy /mtproxy/
+WORKDIR /mtproxy/
+RUN make
+WORKDIR /mtproxy/objs/bin
+COPY run.sh .
+RUN chmod +x run.sh
+CMD run.sh
